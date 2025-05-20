@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     [Header("Spawn and Checks")]
     public Transform spawnPoint;
+    public GameObject deathBarrier;
+    public GameObject endPoint;
 
     private Rigidbody _playerRigidbody;
     private float movementX;
@@ -31,6 +34,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         _playerRigidbody = GetComponent<Rigidbody>();
         transform.position = spawnPoint.position;
+
     }
 
     // Update is called once per frame
@@ -45,6 +49,7 @@ public class PlayerMovementScript : MonoBehaviour
             //Debug.Log(grounded);
             _playerRigidbody.linearDamping = groundDrag;
             grounded = true;
+            
         }
         else
         {
@@ -97,8 +102,68 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (other.isTrigger)
         {
-            transform.position = spawnPoint.position;
+            /*if (deathBarrierCollider.isTrigger)
+            {
+                Debug.Log("Entered death trigger, object is: " + gameObject.name);
+                transform.position = spawnPoint.position;
+            }
+
+            if (endPointCollider.isTrigger)
+            {
+                Debug.Log("Entered winning trigger, object is: " + gameObject.name);
+                //Debug.Log("Reached to the end");
+            }
+            Debug.Log("You died!");
+            transform.position = spawnPoint.position;*/
         }
+        
     }
+
+    public void OnRespawn()
+    {
+        if (deathBarrier.GetComponent<OutOfBoundsScript>().isOutOfBounds == true)
+        {
+            deathBarrier.GetComponent<OutOfBoundsScript>().isOutOfBounds = false;
+        }
+        
+        if (endPoint.GetComponent<FinishedGoal>().reachedGoal == true)
+        {
+            endPoint.GetComponent<FinishedGoal>().reachedGoal = false;
+        }
+
+    }
+
+    #region DebugLog checking with button press
+    private void DebugLogsChecks()
+    {
+        /*if (deathBarrier)
+        {
+            isAvailable = true;
+            Debug.Log(deathBarrier.name + " is " + isAvailable);
+        }
+        else if (!deathBarrier)
+        {
+            isAvailable = false;
+            Debug.Log(deathBarrier.name + " is " + isAvailable);
+        }*/
+
+        /*if (endPoint)
+        {
+            isAvailable = true;
+            Debug.Log(endPoint.name + " is " + isAvailable);
+        }
+        else if (!endPoint)
+        {
+            isAvailable = false;
+            Debug.Log(endPoint.name + " is " + isAvailable);
+        }*/
+
+    }
+
+    void OnDebugCheck()
+    {
+        //DebugLogsChecks();
+    }
+    #endregion
 
 }
