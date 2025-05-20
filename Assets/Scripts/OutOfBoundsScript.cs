@@ -22,7 +22,6 @@ public class OutOfBoundsScript : MonoBehaviour
         {
             thePlayerObj.transform.position = thePlayerObj.GetComponent<PlayerMovementScript>().spawnPoint.position;
             thePlayerObj.GetComponent<PlayerMovementScript>().OnRespawn();
-            //isOutOfBounds = false;
         }
     }
 

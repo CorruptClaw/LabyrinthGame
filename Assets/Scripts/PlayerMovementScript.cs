@@ -23,6 +23,7 @@ public class PlayerMovementScript : MonoBehaviour
     public Transform spawnPoint;
     public GameObject deathBarrier;
     public GameObject endPoint;
+    public GameObject markingSpots;
 
     private Rigidbody _playerRigidbody;
     private float movementX;
@@ -98,25 +99,10 @@ public class PlayerMovementScript : MonoBehaviour
        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnInteract()
     {
-        if (other.isTrigger)
-        {
-            /*if (deathBarrierCollider.isTrigger)
-            {
-                Debug.Log("Entered death trigger, object is: " + gameObject.name);
-                transform.position = spawnPoint.position;
-            }
-
-            if (endPointCollider.isTrigger)
-            {
-                Debug.Log("Entered winning trigger, object is: " + gameObject.name);
-                //Debug.Log("Reached to the end");
-            }
-            Debug.Log("You died!");
-            transform.position = spawnPoint.position;*/
-        }
-        
+        Debug.Log("Interacting");
+        //markingSpots.GetComponent<InteractMarkersScript>().MarkingSpot();
     }
 
     public void OnRespawn()
