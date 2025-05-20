@@ -10,23 +10,27 @@ public class PlayerMovementScript : MonoBehaviour
 
     public float groundDrag;
 
+    public float jumpForce;
+    public float airMultiplier;
+
     [Header("Ground Check")]
     public float _playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
 
+    [Header("Spawn and Checks")]
+    public Transform spawnPoint;
+
     private Rigidbody _playerRigidbody;
     private float movementX;
     private float movementY;
-
-    Vector3 moveDirection;
-
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
+        transform.position = spawnPoint.position;
     }
 
     // Update is called once per frame
@@ -38,7 +42,9 @@ public class PlayerMovementScript : MonoBehaviour
         // handle drag
         if (grounded)
         {
+            //Debug.Log(grounded);
             _playerRigidbody.linearDamping = groundDrag;
+            grounded = true;
         }
         else
         {
@@ -61,7 +67,38 @@ public class PlayerMovementScript : MonoBehaviour
 
         Vector3 WorldMovement = transform.TransformVector(Localmovement);
 
-        _playerRigidbody.AddForce(WorldMovement * speed);
+        if (grounded)
+        {
+            _playerRigidbody.AddForce(WorldMovement * speed);
+        }
+        else if (!grounded)
+        {
+            _playerRigidbody.AddForce(WorldMovement * speed * airMultiplier);
+        }
+        
+
+    }
+
+    void OnJump()
+    {
+       if (grounded)
+       {
+            //Debug.Log(readyToJump);
+
+            // reset y velocity
+            _playerRigidbody.angularVelocity = new Vector3(_playerRigidbody.linearVelocity.x, 0f, _playerRigidbody.linearVelocity.y);
+
+            _playerRigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            grounded = false;
+       }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.isTrigger)
+        {
+            transform.position = spawnPoint.position;
+        }
     }
 
 }
