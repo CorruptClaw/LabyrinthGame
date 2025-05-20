@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    [Header("Movement")]
     public float speed;
+
 
     private Rigidbody _playerRigidbody;
     private float movementX;
