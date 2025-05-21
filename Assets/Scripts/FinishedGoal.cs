@@ -5,7 +5,7 @@ using UnityEngine;
 public class FinishedGoal : MonoBehaviour
 {
     private Transform thePlayerLoc;
-    public GameObject thePlayerObj;
+    public GameObject finishText;
     public bool reachedGoal;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,8 +20,7 @@ public class FinishedGoal : MonoBehaviour
     {
         if (reachedGoal)
         {
-            thePlayerObj.transform.position = thePlayerObj.GetComponent<PlayerMovementScript>().spawnPoint.position;
-            thePlayerObj.GetComponent<PlayerMovementScript>().OnRespawn();
+            finishText.SetActive(true);
         }
     }
 
@@ -29,8 +28,16 @@ public class FinishedGoal : MonoBehaviour
     {
         if (thePlayerLoc.GetComponent<CapsuleCollider>() == true)
         {
-            Debug.Log("Triggering the finish goal trigger, obj name: " + other.name);
             reachedGoal = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (thePlayerLoc.GetComponent<CapsuleCollider>() == true)
+        {
+            reachedGoal = false;
+            finishText.SetActive(false);
         }
     }
 }

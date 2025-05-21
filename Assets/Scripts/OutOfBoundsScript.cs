@@ -29,7 +29,6 @@ public class OutOfBoundsScript : MonoBehaviour
     {
         if (thePlayerLoc.GetComponent<CapsuleCollider>() == true)
         {
-            Debug.Log("Triggering the death trigger, obj name: " + other.name);
             isOutOfBounds = true;
         }
     }

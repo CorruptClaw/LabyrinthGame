@@ -35,7 +35,6 @@ public class PlayerMovementScript : MonoBehaviour
     {
         _playerRigidbody = GetComponent<Rigidbody>();
         transform.position = spawnPoint.position;
-
     }
 
     // Update is called once per frame
@@ -47,16 +46,13 @@ public class PlayerMovementScript : MonoBehaviour
         // handle drag
         if (grounded)
         {
-            //Debug.Log(grounded);
             _playerRigidbody.linearDamping = groundDrag;
             grounded = true;
-            
         }
         else
         {
             _playerRigidbody.linearDamping = 0;
         }
-
     }
 
     void OnMove(InputValue movementValue)
@@ -81,16 +77,12 @@ public class PlayerMovementScript : MonoBehaviour
         {
             _playerRigidbody.AddForce(WorldMovement * speed * airMultiplier);
         }
-        
-
     }
 
     void OnJump()
     {
        if (grounded)
        {
-            //Debug.Log(readyToJump);
-
             // reset y velocity
             _playerRigidbody.angularVelocity = new Vector3(_playerRigidbody.linearVelocity.x, 0f, _playerRigidbody.linearVelocity.y);
 
@@ -101,7 +93,6 @@ public class PlayerMovementScript : MonoBehaviour
 
     void OnInteract()
     {
-        //Debug.Log("Interacting");
         markingSpots.GetComponent<InteractMarkersScript>().MarkingSpot();
     }
 
@@ -116,40 +107,5 @@ public class PlayerMovementScript : MonoBehaviour
         {
             endPoint.GetComponent<FinishedGoal>().reachedGoal = false;
         }
-
     }
-
-    #region DebugLog checking with button press
-    private void DebugLogsChecks()
-    {
-        /*if (deathBarrier)
-        {
-            isAvailable = true;
-            Debug.Log(deathBarrier.name + " is " + isAvailable);
-        }
-        else if (!deathBarrier)
-        {
-            isAvailable = false;
-            Debug.Log(deathBarrier.name + " is " + isAvailable);
-        }*/
-
-        /*if (endPoint)
-        {
-            isAvailable = true;
-            Debug.Log(endPoint.name + " is " + isAvailable);
-        }
-        else if (!endPoint)
-        {
-            isAvailable = false;
-            Debug.Log(endPoint.name + " is " + isAvailable);
-        }*/
-
-    }
-
-    void OnDebugCheck()
-    {
-        //DebugLogsChecks();
-    }
-    #endregion
-
 }

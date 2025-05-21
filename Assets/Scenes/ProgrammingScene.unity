@@ -1174,10 +1174,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7686654572727257338, guid: 21bfa4e97f46bf34da60508cd9aa8b20, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21bfa4e97f46bf34da60508cd9aa8b20, type: 3}
 --- !u!1001 &1710560719483157226
 PrefabInstance:
@@ -1227,10 +1224,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4331000881971722321, guid: 637da75d5a9508c429d101a6655d85b9, type: 3}
-      propertyPath: thePlayerObj
-      value: 
-      objectReference: {fileID: 323467996}
     - target: {fileID: 9101782920552433927, guid: 637da75d5a9508c429d101a6655d85b9, type: 3}
       propertyPath: m_Name
       value: FinishPoint
