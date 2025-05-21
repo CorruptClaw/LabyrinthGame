@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractMarkersScript : MonoBehaviour
 {
     [Header("Marker Sprite")]
     public Sprite markerX;
-
+    public GameObject toggleText;
 
     private Transform thePlayerLoc;
     public bool playerInRange;
@@ -30,6 +31,7 @@ public class InteractMarkersScript : MonoBehaviour
         {
             Debug.Log("Triggering the marking trigger, obj name: " + other.name);
             playerInRange = true;
+            toggleText.SetActive(true);
         }
     }
 
@@ -39,6 +41,7 @@ public class InteractMarkersScript : MonoBehaviour
         {
             Debug.Log("Leaving the marking trigger, obj name: " + other.name);
             playerInRange = false;
+            toggleText.SetActive(false);
         }
     }
 
@@ -47,6 +50,7 @@ public class InteractMarkersScript : MonoBehaviour
         if (playerInRange)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = markerX;
+            toggleText.SetActive(false);
         }
         else if (!playerInRange)
         {
