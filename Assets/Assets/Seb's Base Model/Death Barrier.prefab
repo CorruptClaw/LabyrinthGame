@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8279167105230353273}
   - component: {fileID: 327186150047761119}
   - component: {fileID: 3974950124139471092}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Death Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
