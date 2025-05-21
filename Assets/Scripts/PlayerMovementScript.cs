@@ -101,8 +101,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     void OnInteract()
     {
-        Debug.Log("Interacting");
-        //markingSpots.GetComponent<InteractMarkersScript>().MarkingSpot();
+        //Debug.Log("Interacting");
+        markingSpots.GetComponent<InteractMarkersScript>().MarkingSpot();
     }
 
     public void OnRespawn()
